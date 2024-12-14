@@ -3,6 +3,7 @@ using Application.Book.UseCases.GetById;
 using BookStorage;
 using Grpc.Core;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Grpc.Services
 {
@@ -31,6 +32,7 @@ namespace Grpc.Services
             };
         }
 
+        [Authorize]
         public override async Task<GetAllGrpcResponse> GetAll(GetAllGrpcRequest request, ServerCallContext context)
         {
             var response = await _mediator.Send(new GetAllRequest(), context.CancellationToken);

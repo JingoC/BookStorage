@@ -2,9 +2,13 @@
 using Application.Book.UseCases.GetById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using RestApi.Contracts.Book.GetAll;
 using RestApi.Contracts.Book.GetAll.Dto;
 using RestApi.Contracts.Book.GetById;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace WebApi.Controller
 {
@@ -50,6 +54,32 @@ namespace WebApi.Controller
                     Description = x.Description
                 }).ToArray()
             };
+        }
+
+        [HttpGet("token")]
+        public string Token()
+        {
+            return GenerateJSONWebToken();
+        }
+
+        string GenerateJSONWebToken()
+        {
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("test_test_test_test_test_test_test_test_test_test"));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var claims = new[] {
+                new Claim("sub", "login"),
+                new Claim("email", "email"),
+                new Claim("jti", Guid.NewGuid().ToString())
+            };
+
+            var token = new JwtSecurityToken("issuer",
+                "issuer",
+                claims,
+                expires: DateTime.Now.AddMinutes(120),
+                signingCredentials: credentials);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

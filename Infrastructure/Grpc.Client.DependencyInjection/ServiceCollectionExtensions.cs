@@ -47,7 +47,19 @@ namespace Grpc.Client.DependencyInjection
                         }
                     }
                 })
+                .AddCallCredentials((context, metadata, sp) =>
+                {
+                    var config = sp.CreateScope().ServiceProvider
+                        .GetRequiredService<IOptionsSnapshot<TConfiguration>>().Value;
+
+                    if (config.Credentials is not null)
+                    {
+                        metadata.Add("Authorization", $"Bearer {config.Credentials.Bearer}");
+                    }
+                    return Task.CompletedTask;
+                })
                 .AddInterceptor<LoggingInterceptor>();
+
 
             return builder;
         }

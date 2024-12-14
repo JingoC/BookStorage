@@ -3,11 +3,15 @@
     "Name": "New Profile",
     "Projects": [
       {
-        "Path": "GrpcExample\\GrpcExample.csproj",
+        "Path": "Presenters\\Grpc\\Grpc.csproj",
         "Action": "Start"
       },
       {
-        "Path": "WebApiExample\\WebApiExample.csproj",
+        "Path": "Presenters\\Proxy\\Proxy.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Presenters\\WebApi\\WebApi.csproj",
         "Action": "Start"
       }
     ]
