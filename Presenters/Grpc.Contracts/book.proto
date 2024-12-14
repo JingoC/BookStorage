@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+option csharp_namespace = "BookStorage";
+
+package book;
+
+// Book service
+service BookService {
+  // Get book by Id
+  rpc GetById (GetByIdGrpcRequest) returns (GetByIdGrpcResponse);
+  rpc GetAll (GetAllGrpcRequest) returns (GetAllGrpcResponse);
+}
+
+message GetByIdGrpcRequest {
+	// Id
+	int32 id = 1;
+}
+
+message GetByIdGrpcResponse {
+	// Id
+	int32 id = 1;
+	// Title
+	string title = 2;
+	// Name author
+	string author = 3;
+	// Book description
+	string description = 4;
+}
+
+message GetAllGrpcRequest {
+
+}
+
+message GetAllGrpcResponse {
+	// Collection of books
+    repeated GetAllBookGrpcDto books = 1;
+}
+
+message GetAllBookGrpcDto {
+    // Id
+	int32 id = 1;
+	// Title
+	string title = 2;
+	// Name author
+	string author = 3;
+	// Book description
+	string description = 4;
+}

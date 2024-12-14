@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.3.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="7.2.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="7.2.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="7.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Application\Application.BookSearch\Application.BookSearch.csproj" />
+    <ProjectReference Include="..\..\Application\Application.Book\Application.Book.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Database\Database.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Grpc.Client.DependencyInjection\Grpc.Client.DependencyInjection.csproj" />
+    <ProjectReference Include="..\Grpc.Contracts\Grpc.Contracts.csproj" />
+    <ProjectReference Include="..\RestApi.Contracts\RestApi.Contracts.csproj" />
+  </ItemGroup>
+	
+</Project>

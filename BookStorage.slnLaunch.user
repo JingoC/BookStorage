@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "GrpcExample\\GrpcExample.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "WebApiExample\\WebApiExample.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

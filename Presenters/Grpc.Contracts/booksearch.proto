@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option csharp_namespace = "BookStorage";
+
+package booksearch;
+
+// Book search service
+service BookSearchService {
+  // Search book by author name
+  rpc SearchByAuthor (SearchByAuthorGrpcRequest) returns (SearchByAuthorGrpcResponse);
+}
+
+message SearchByAuthorGrpcRequest {
+	// Name of author
+	string name = 1;
+}
+
+message SearchByAuthorGrpcResponse {
+	// Collection of books
+    repeated SearchByAuthorBookGrpcDto books = 1;
+}
+message SearchByAuthorBookGrpcDto {
+    // Id
+	int32 id = 1;
+	// Title
+	string title = 2;
+	// Name author
+	string author = 3;
+	// Book description
+	string description = 4;
+}
